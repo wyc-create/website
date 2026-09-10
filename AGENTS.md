@@ -6,6 +6,13 @@
 
 website 项目，远程仓库 https://github.com/wyc-create/website.git。当前为初始化阶段，项目内容待定，尚未开始实际开发。
 
+## 目录布局（容器模式）
+
+- 容器 `E:\website\`（本身不是仓库）
+- 主工作目录 `E:\website\website\`（main 分支，`.git/` 在此；本文件与 memory/ 以此为项目根）
+- 工作树 `E:\website\worktrees\<分支名>\`（禁止嵌套进主工作目录）
+- 新工作树创建：`git -C <主工作目录> worktree add ../worktrees/<分支名> -b <分支名>`
+
 ## 接手必读（按此顺序）
 
 1. 分支身份：`git branch --show-current` → 核对 `memory/_branch.md`（缺卡建卡，冲突以 git 为准）
@@ -30,6 +37,6 @@ website 项目，远程仓库 https://github.com/wyc-create/website.git。当前
 ## Git 规则
 
 - 及时提交推送；密钥等敏感信息永不提交
-- worktree 一律建在 `<项目根名>-worktrees/`（项目根的兄弟目录），禁止嵌套在项目根内
+- worktree 布局见上方「目录布局（容器模式）」，禁止嵌套进主工作目录
 - 共享主干文件只在 main 改，改后 merge 同步各 worktree；日常记忆与改动只在本分支，跨分支唯一通道是合并+主干对账
 - 判断推送/同步状态以 `git ls-remote origin` 为准
